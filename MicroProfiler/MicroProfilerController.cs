@@ -39,7 +39,7 @@ namespace MicroProfiler
 
             currentProfile.Stop();
             
-            DiagnosticOutput.OutputDiagnostics(currentProfile.Tasks, currentProfile.Stopwatch);
+            DiagnosticOutput.OutputDiagnostics(currentProfile.Tasks, currentProfile.Timer);
         }
 
         public void Dispose()

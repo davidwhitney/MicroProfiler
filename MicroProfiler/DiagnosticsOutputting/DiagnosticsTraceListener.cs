@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using MicroProfiler.Profiling;
 
@@ -9,15 +8,14 @@ namespace MicroProfiler.DiagnosticsOutputting
     {
         public void OutputDiagnostics(List<MicroProfilerProfiledStep> steps, Stopwatch elapsedTimer)
         {
-            WriteLine("Profiling session summary");
+            WriteLine("");
+            WriteLine("Profiling session - Total time: " + elapsedTimer.ElapsedMilliseconds + "ms");
 
             foreach (var task in steps)
             {
-                WriteLine(task.Label + " started at: +" + task.MsFromRequestStart + "ms  -  duration: " +
-                          task.Elapsed.Milliseconds + "ms");
+                var paddedTime = ("+" + task.MsFromRequestStart + "ms").PadRight(15);
+                WriteLine(paddedTime + "Duration: " + task.Elapsed.TotalMilliseconds + "ms" .PadRight(12) + task.Label);
             }
-
-            WriteLine("Total time in Modules " + elapsedTimer.ElapsedMilliseconds + "ms");
         }
 
         private static void WriteLine(string message)

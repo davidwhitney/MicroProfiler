@@ -7,24 +7,22 @@ namespace MicroProfiler.Profiling
     public class ProfiledOperations
     {
         public Guid Id { get; set; }
-        public Stopwatch Stopwatch { get; set; }
+        public Stopwatch Timer { get; set; }
         public List<MicroProfilerProfiledStep> Tasks { get; private set; }
 
         public ProfiledOperations()
         {
             Id = Guid.NewGuid();
             Tasks = new List<MicroProfilerProfiledStep>();
-
-            Stopwatch = new Stopwatch();
-            Stopwatch.Start();
+            Timer = Stopwatch.StartNew();
         }
 
         public IProfileASingleStep Step(string label)
         {
             var task = new MicroProfilerProfiledStep(label, profiledStep =>
             {
-                profiledStep.ElapsedMsInRequest = Stopwatch.ElapsedMilliseconds;
-            }, Stopwatch.ElapsedMilliseconds);
+                profiledStep.ElapsedMsInRequest = Timer.ElapsedMilliseconds;
+            }, Timer.ElapsedMilliseconds);
 
             Tasks.Add(task);
             return task;
@@ -32,7 +30,7 @@ namespace MicroProfiler.Profiling
 
         public void Stop()
         {
-            Stopwatch.Stop();
+            Timer.Stop();
         }
     }
 }

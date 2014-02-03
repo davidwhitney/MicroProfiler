@@ -25,10 +25,10 @@ namespace MicroProfiler.Test.Unit.Profiling
         public void Stop_StopsOverallTimer()
         {
             var op = new ProfiledOperations();
-            Assert.That(op.Stopwatch.IsRunning, Is.True);
+            Assert.That(op.Timer.IsRunning, Is.True);
 
             op.Stop();
-            Assert.That(op.Stopwatch.IsRunning, Is.False);
+            Assert.That(op.Timer.IsRunning, Is.False);
         }
     }
 }

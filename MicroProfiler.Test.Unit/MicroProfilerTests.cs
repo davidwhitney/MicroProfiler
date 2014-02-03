@@ -1,4 +1,6 @@
-﻿using MicroProfiler.Test.Unit.Fakes;
+﻿using System.Threading;
+using MicroProfiler.ProfilingDataStorage;
+using MicroProfiler.Test.Unit.Fakes;
 using NUnit.Framework;
 
 namespace MicroProfiler.Test.Unit

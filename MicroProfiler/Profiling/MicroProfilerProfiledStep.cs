@@ -28,17 +28,15 @@ namespace MicroProfiler.Profiling
             _onCompletion = onCompletion;
             Label = label;
 
-            _stopwatch = new Stopwatch();
-            _stopwatch.Start();
-
+            _stopwatch = Stopwatch.StartNew();
             Start = DateTime.Now;
         }
 
         public void Dispose()
         {
+            End = DateTime.Now;
             _stopwatch.Stop();
 
-            End = DateTime.Now;
             Elapsed = _stopwatch.Elapsed;
 
             _onCompletion(this);

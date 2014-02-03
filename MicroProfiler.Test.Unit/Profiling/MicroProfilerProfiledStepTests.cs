@@ -18,7 +18,6 @@ namespace MicroProfiler.Test.Unit.Profiling
 
             Assert.That(step.Label, Is.EqualTo(label));
             Assert.That(step.MsFromRequestStart, Is.EqualTo(999));
-            Assert.That(step.Start, Is.Not.EqualTo(DateTime.MinValue));
         }
 
         [Test]
@@ -30,7 +29,6 @@ namespace MicroProfiler.Test.Unit.Profiling
             step.Dispose();
 
             Assert.That(step.Elapsed, Is.Not.EqualTo(new TimeSpan(0)));
-            Assert.That(step.End, Is.Not.EqualTo(DateTime.MinValue));
         }
 
         [Test]
