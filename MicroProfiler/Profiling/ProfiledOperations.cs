@@ -39,19 +39,7 @@ namespace MicroProfiler.Profiling
         public void Dispose()
         {
             Stopwatch.Stop();
-            Write("Profiling session " + Id + " summary");
-
-            foreach (var task in _tasks)
-            {
-                Write(task.Label + " started at: +" + task.MsFromRequestStart + "ms  -  duration: " + task.Elapsed.Milliseconds + "ms");
-            }
-
-            Write("Total time in Modules " + Stopwatch.ElapsedMilliseconds + "ms");
-        }
-
-        public void Write(string message)
-        {
-            _diagnosticOutput.WriteLine(message);
+            _diagnosticOutput.OutputDiagnostics(Id, _tasks, Stopwatch);
         }
     }
 }
