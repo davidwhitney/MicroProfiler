@@ -48,6 +48,8 @@
     <Compile Include="Fakes\FakeStorage.cs" />
     <Compile Include="MicroProfilerControllerTests.cs" />
     <Compile Include="MicroProfilerTests.cs" />
+    <Compile Include="Profiling\NullProfiledStepTests.cs" />
+    <Compile Include="Profiling\ProfiledOperationsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -81,6 +81,17 @@ namespace MicroProfiler.Test.Unit
 
             Assert.That(_diag.Steps[0], Is.EqualTo(step1));
         }
+
+        [Test]
+        public void Dispose_CallsStopAndCallsDiagnostics()
+        {
+            var storage = new FakeStorage(true);
+            var mp = new MicroProfilerController(storage, _diag);
+
+            mp.Dispose();
+
+            Assert.That(_diag.Called, Is.True);
+        }
         
     }
 }
