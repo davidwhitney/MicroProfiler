@@ -1,4 +1,6 @@
-﻿using MicroProfiler.DiagnosticsOutputting;
+﻿using System.Collections.Generic;
+using System.Linq;
+using MicroProfiler.DiagnosticsOutputting;
 using MicroProfiler.Profiling;
 using MicroProfiler.ProfilingDataStorage;
 
@@ -7,9 +9,15 @@ namespace MicroProfiler
     public class MicroProfilerController : IMicroProfiler
     {
         public IMicroProfilerStorage Storage { get; private set; }
-        public IEmitDiagnostics DiagnosticOutput { get; private set; }
+        public ICollection<IEmitDiagnostics> DiagnosticOutput { get; private set; }
 
-        public MicroProfilerController(IMicroProfilerStorage storage, IEmitDiagnostics diagnosticOutput)
+        public MicroProfilerController(IMicroProfilerStorage storage, params IEmitDiagnostics[] diagnosticOutput)
+        {
+            Storage = storage;
+            DiagnosticOutput = diagnosticOutput != null ? diagnosticOutput.ToList() : new List<IEmitDiagnostics>();
+        }
+
+        public MicroProfilerController(IMicroProfilerStorage storage, ICollection<IEmitDiagnostics> diagnosticOutput)
         {
             Storage = storage;
             DiagnosticOutput = diagnosticOutput;
@@ -38,8 +46,11 @@ namespace MicroProfiler
             }
 
             currentProfile.Stop();
-            
-            DiagnosticOutput.OutputDiagnostics(currentProfile.Tasks, currentProfile.Timer);
+
+            foreach (var output in DiagnosticOutput)
+            {
+                output.OutputDiagnostics(currentProfile.Tasks, currentProfile.Timer);
+            }
         }
 
         public void Dispose()

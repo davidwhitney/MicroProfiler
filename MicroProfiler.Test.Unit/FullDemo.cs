@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using MicroProfiler.DiagnosticsOutputting;
 using MicroProfiler.Test.Unit.Fakes;
 using NUnit.Framework;

@@ -8,7 +8,6 @@ namespace MicroProfiler.DiagnosticsOutputting
     {
         public void OutputDiagnostics(List<MicroProfilerProfiledStep> steps, Stopwatch elapsedTimer)
         {
-            WriteLine("");
             WriteLine("Profiling session - Total time: " + elapsedTimer.ElapsedMilliseconds + "ms");
 
             foreach (var task in steps)

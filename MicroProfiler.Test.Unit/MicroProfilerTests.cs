@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using MicroProfiler.ProfilingDataStorage;
+﻿using System.Linq;
 using MicroProfiler.Test.Unit.Fakes;
 using NUnit.Framework;
 
@@ -27,7 +26,7 @@ namespace MicroProfiler.Test.Unit
             
             var currentMp = MicroProfiler.Current;
 
-            Assert.That(currentMp.DiagnosticOutput, Is.EqualTo(diagnosticsEmitter));
+            Assert.That(currentMp.DiagnosticOutput.ToList()[0], Is.EqualTo(diagnosticsEmitter));
         }
 
         [Test]
