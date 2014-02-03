@@ -3,7 +3,7 @@ using MicroProfiler.Profiling;
 
 namespace MicroProfiler.ProfilingDataStorage
 {
-    public class HttpProfilerPerRequestStorage : IStoreProfilingDataForAUnitOfWork
+    public class HttpProfilerPerRequestStorage : IMicroProfilerStorage
     {
         private readonly HttpContextBase _context;
 

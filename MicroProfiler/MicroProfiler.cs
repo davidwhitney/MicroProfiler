@@ -1,52 +1,35 @@
-﻿using System;
+﻿using System.Web;
 using MicroProfiler.DiagnosticsOutputting;
-using MicroProfiler.Profiling;
 using MicroProfiler.ProfilingDataStorage;
 
 namespace MicroProfiler
 {
-    public class MicroProfiler : IMicroProfiler
+    public static class MicroProfiler
     {
-        public Guid Id { get; set; }
+        private static IMicroProfilerStorage _storage;
+        private static IEmitDiagnostics _diagnosticsOutput;
 
-        private readonly IStoreProfilingDataForAUnitOfWork _storage;
-        private readonly IEmitDiagnostics _diagnosticOutput;
-
-        public MicroProfiler(IStoreProfilingDataForAUnitOfWork storage, IEmitDiagnostics diagnosticOutput)
+        public static void Configure(IMicroProfilerStorage unitOfWorkStorage, IEmitDiagnostics diagnosticsOutput = null)
         {
-            _storage = storage;
-            _diagnosticOutput = diagnosticOutput;
+            _storage = unitOfWorkStorage;
+            _diagnosticsOutput = diagnosticsOutput ?? new DiagnosticsTraceListener();
         }
 
-        public IProfileASingleStep Step(string label)
+        public static IMicroProfiler Current
         {
-            return _storage.Retrieve() == null
-                ? new NullProfiledStep()
-                : _storage.Retrieve().Step(label);
-        }
-
-        public void Start()
-        {
-            var profiler = new ProfiledOperations();
-            _storage.Store(profiler);
-        }
-
-        public void Stop()
-        {
-            var currentProfile = _storage.Retrieve();
-            if (currentProfile == null)
+            get
             {
-                return;
+                var storage = _storage ?? new HttpProfilerPerRequestStorage(new HttpContextWrapper(HttpContext.Current));
+                var diagnosticsOutput = _diagnosticsOutput ?? new DiagnosticsTraceListener();
+
+                var profiler = new MicroProfilerController(storage, diagnosticsOutput);
+                if (storage.Retrieve() == null)
+                {
+                    profiler.Start();
+                }
+
+                return profiler;
             }
-
-            currentProfile.Stop();
-            
-            _diagnosticOutput.OutputDiagnostics(Id, currentProfile.Tasks, currentProfile.Stopwatch);
-        }
-
-        public void Dispose()
-        {
-            Stop();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace MicroProfiler.ProfilingDataStorage
 {
-    public interface IStoreProfilingDataForAUnitOfWork
+    public interface IMicroProfilerStorage
     {
         void Store(ProfiledOperations ops);
 

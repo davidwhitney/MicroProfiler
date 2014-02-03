@@ -42,11 +42,12 @@
   <ItemGroup>
     <Compile Include="DiagnosticsOutputting\DiagnosticsTraceListener.cs" />
     <Compile Include="DiagnosticsOutputting\IEmitDiagnostics.cs" />
+    <Compile Include="MicroProfiler.cs" />
     <Compile Include="ProfilingDataStorage\HttpProfilerPerRequestStorage.cs" />
     <Compile Include="IMicroProfiler.cs" />
     <Compile Include="Profiling\IProfileASingleStep.cs" />
-    <Compile Include="ProfilingDataStorage\IStoreProfilingDataForAUnitOfWork.cs" />
-    <Compile Include="MicroProfiler.cs" />
+    <Compile Include="ProfilingDataStorage\IMicroProfilerStorage.cs" />
+    <Compile Include="MicroProfilerController.cs" />
     <Compile Include="Profiling\MicroProfilerProfiledStep.cs" />
     <Compile Include="Profiling\NullProfiledStep.cs" />
     <Compile Include="Profiling\ProfiledOperations.cs" />

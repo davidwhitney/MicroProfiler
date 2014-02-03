@@ -7,9 +7,9 @@ namespace MicroProfiler.DiagnosticsOutputting
 {
     public class DiagnosticsTraceListener : IEmitDiagnostics
     {
-        public void OutputDiagnostics(Guid sessionId, List<MicroProfilerProfiledStep> steps, Stopwatch elapsedTimer)
+        public void OutputDiagnostics(List<MicroProfilerProfiledStep> steps, Stopwatch elapsedTimer)
         {
-            WriteLine("Profiling session " + sessionId + " summary");
+            WriteLine("Profiling session summary");
 
             foreach (var task in steps)
             {
