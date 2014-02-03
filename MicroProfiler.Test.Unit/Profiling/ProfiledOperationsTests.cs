@@ -14,7 +14,7 @@ namespace MicroProfiler.Test.Unit.Profiling
 
             using (op.Step("test"))
             {
-                Thread.Sleep(1);
+                Thread.Sleep(100);
             }
 
             Assert.That(op.Tasks[0].Label, Is.EqualTo("test"));
