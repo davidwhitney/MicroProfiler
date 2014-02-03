@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Fakes\FakeDiagnosticsEmitter.cs" />
     <Compile Include="Fakes\FakeStorage.cs" />
+    <Compile Include="MicroProfilerControllerTests.cs" />
     <Compile Include="MicroProfilerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

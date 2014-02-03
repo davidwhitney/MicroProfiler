@@ -5,26 +5,26 @@ namespace MicroProfiler.Test.Unit.Fakes
 {
     public class FakeStorage : IMicroProfilerStorage
     {
-        private ProfiledOperations _ops;
+        public ProfiledOperations Ops { get; set; }
         public bool StoreCalled { get; set; }
 
         public FakeStorage(bool makeActive = false)
         {
             if (makeActive)
             {
-                _ops = new ProfiledOperations();
+                Ops = new ProfiledOperations();
             }
         }
 
         public void Store(ProfiledOperations ops)
         {
             StoreCalled = true;
-            _ops = ops;
+            Ops = ops;
         }
 
         public ProfiledOperations Retrieve()
         {
-            return _ops;
+            return Ops;
         }
     }
 }
