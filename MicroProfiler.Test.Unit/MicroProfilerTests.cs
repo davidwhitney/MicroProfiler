@@ -20,12 +20,12 @@ namespace MicroProfiler.Test.Unit
         [Test]
         public void Current_ReturnsInstanceWithConfiguredDiagnosticsEmitter()
         {
-            var storage = new FakeStorage();
-            MicroProfiler.Configure(storage); 
+            var diagnosticsEmitter = new FakeDiagnosticsEmitter();
+            MicroProfiler.Configure(new FakeStorage(), diagnosticsEmitter); 
             
             var currentMp = MicroProfiler.Current;
 
-            Assert.That(currentMp.Storage, Is.EqualTo(storage));
+            Assert.That(currentMp.DiagnosticOutput, Is.EqualTo(diagnosticsEmitter));
         }
 
         [Test]
