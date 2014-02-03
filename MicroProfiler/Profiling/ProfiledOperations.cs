@@ -21,15 +21,13 @@ namespace MicroProfiler.Profiling
 
         public IProfileASingleStep Step(string label)
         {
-            var task = new MicroProfilerProfiledStep(label, RegisterTaskFinish, Stopwatch.ElapsedMilliseconds);
+            var task = new MicroProfilerProfiledStep(label, profiledStep =>
+            {
+                profiledStep.ElapsedMsInRequest = Stopwatch.ElapsedMilliseconds;
+            }, Stopwatch.ElapsedMilliseconds);
 
             Tasks.Add(task);
             return task;
-        }
-
-        public void RegisterTaskFinish(MicroProfilerProfiledStep task)
-        {
-            task.ElapsedMsInRequest = Stopwatch.ElapsedMilliseconds;
         }
 
         public void Stop()
