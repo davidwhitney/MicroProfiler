@@ -7,19 +7,20 @@ namespace MicroProfiler.DiagnosticsOutputting
     {
         public void OutputDiagnostics(ProfiledOperations operations, Stopwatch elapsedTimer)
         {
-            WriteLine("Profiling session "+ operations.Id + " - Total time: " + elapsedTimer.ElapsedMilliseconds + "ms");
-            WriteLine("Total time: " + elapsedTimer.ElapsedMilliseconds + "ms");
+            WriteLine("Session " + operations.Id);
+            WriteLine("Clock".PadRight(15) + "Time (inc. children)".PadRight(25) + "Label");
 
             foreach (var task in operations.Tasks)
             {
-                var paddedTime = ("+" + task.MsFromRequestStart + "ms").PadRight(15);
-                WriteLine(paddedTime + "Duration: " + task.Elapsed.TotalMilliseconds + "ms" .PadRight(12) + task.Label);
+                WriteLine(("+" + task.MsFromRequestStart + "ms").PadRight(15) + (task.Elapsed.TotalMilliseconds + "ms").PadRight(25) + task.Label);
             }
+
+            WriteLine("Total time: " + elapsedTimer.ElapsedMilliseconds + "ms");
         }
 
         private static void WriteLine(string message)
         {
-            Trace.WriteLine("[MicroProfiler] " + message);
+            Trace.WriteLine("[Profiler] " + message);
         }
     }
 }

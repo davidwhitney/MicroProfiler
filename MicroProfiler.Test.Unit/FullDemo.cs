@@ -21,11 +21,16 @@ namespace MicroProfiler.Test.Unit
 
             using (MicroProfiler.Current.Step("My outer loop"))
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(25);
 
                 using (MicroProfiler.Current.Step("My inner loop"))
                 {
-                    Thread.Sleep(1000);
+                    Thread.Sleep(30);
+                }
+
+                using (MicroProfiler.Current.Step("some other thing"))
+                {
+                    Thread.Sleep(30);
                 }
             }
 
