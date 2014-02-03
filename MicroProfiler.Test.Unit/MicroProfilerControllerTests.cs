@@ -79,7 +79,7 @@ namespace MicroProfiler.Test.Unit
             var step1 = mp.Step("a");
             mp.Stop();
 
-            Assert.That(_diag.Steps[0], Is.EqualTo(step1));
+            Assert.That(_diag.Operations.Tasks[0], Is.EqualTo(step1));
         }
 
         [Test]

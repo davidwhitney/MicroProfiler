@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using MicroProfiler.DiagnosticsOutputting;
 using MicroProfiler.Profiling;
 
@@ -8,12 +7,12 @@ namespace MicroProfiler.Test.Unit.Fakes
     public class FakeDiagnosticsEmitter : IEmitDiagnostics
     {
         public bool Called { get; set; }
-        public List<MicroProfilerProfiledStep> Steps { get; set; }
+        public ProfiledOperations Operations { get; set; }
         public Stopwatch ElapsedTimer { get; set; }
 
-        public void OutputDiagnostics(List<MicroProfilerProfiledStep> steps, Stopwatch elapsedTimer)
+        public void OutputDiagnostics(ProfiledOperations operations, Stopwatch elapsedTimer)
         {
-            Steps = steps;
+            Operations = operations;
             ElapsedTimer = elapsedTimer;
             Called = true;
         }

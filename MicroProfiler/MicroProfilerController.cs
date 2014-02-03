@@ -49,7 +49,7 @@ namespace MicroProfiler
 
             foreach (var output in DiagnosticOutput)
             {
-                output.OutputDiagnostics(currentProfile.Tasks, currentProfile.Timer);
+                output.OutputDiagnostics(currentProfile, currentProfile.Timer);
             }
         }
 
