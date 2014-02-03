@@ -27,7 +27,7 @@ namespace MicroProfiler
 
         public void Start()
         {
-            var profiler = new ProfiledOperations(_diagnosticOutput);
+            var profiler = new ProfiledOperations();
             _storage.Store(profiler);
         }
 
@@ -39,7 +39,9 @@ namespace MicroProfiler
                 return;
             }
 
-            currentProfile.Dispose();
+            currentProfile.Stop();
+            
+            _diagnosticOutput.OutputDiagnostics(Id, currentProfile.Tasks, currentProfile.Stopwatch);
         }
 
         public void Dispose()

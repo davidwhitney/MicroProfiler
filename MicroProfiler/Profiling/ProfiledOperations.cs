@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using MicroProfiler.DiagnosticsOutputting;
 
 namespace MicroProfiler.Profiling
 {
@@ -9,15 +8,12 @@ namespace MicroProfiler.Profiling
     {
         public Guid Id { get; set; }
         public Stopwatch Stopwatch { get; set; }
+        public List<MicroProfilerProfiledStep> Tasks { get; private set; }
 
-        private readonly List<MicroProfilerProfiledStep> _tasks;
-        private readonly IEmitDiagnostics _diagnosticOutput;
-
-        public ProfiledOperations(IEmitDiagnostics diagnosticOutput)
+        public ProfiledOperations()
         {
-            _diagnosticOutput = diagnosticOutput;
             Id = Guid.NewGuid();
-            _tasks = new List<MicroProfilerProfiledStep>();
+            Tasks = new List<MicroProfilerProfiledStep>();
 
             Stopwatch = new Stopwatch();
             Stopwatch.Start();
@@ -27,7 +23,7 @@ namespace MicroProfiler.Profiling
         {
             var task = new MicroProfilerProfiledStep(label, RegisterTaskFinish, Stopwatch.ElapsedMilliseconds);
 
-            _tasks.Add(task);
+            Tasks.Add(task);
             return task;
         }
 
@@ -36,10 +32,9 @@ namespace MicroProfiler.Profiling
             task.ElapsedMsInRequest = Stopwatch.ElapsedMilliseconds;
         }
 
-        public void Dispose()
+        public void Stop()
         {
             Stopwatch.Stop();
-            _diagnosticOutput.OutputDiagnostics(Id, _tasks, Stopwatch);
         }
     }
 }
