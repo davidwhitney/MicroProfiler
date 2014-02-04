@@ -1,13 +1,6 @@
 MicroProfiler
 =============
 
-* Intro
-* Why Do I Need It?
-* What This Isn't
-* Containerless usage
-* Configuring My Container
-* Error Handling
-
 Framework agnostic clone of ASP.NET MVC MiniProfiler. If you like explicit profiling steps that you can run in production, but you're not using ASP.NET MVC, your options are limited. MicroProfiler gives you similar syntax in the form:
 
 	[TestFixture]
@@ -46,7 +39,7 @@ Framework agnostic clone of ASP.NET MVC MiniProfiler. If you like explicit profi
 	}
 
 
-If the profiler isn't started, nothing happens, and once you stop the profiling session, all wired up instances of `IEmitdiagnostics` are executed.
+If the profiler isn't started, nothing happens, and once you stop the profiling session, all wired up instances of `IEmitDiagnostics` are executed.
 
 Supporting extensibility, you can implement:
 
@@ -54,6 +47,16 @@ Supporting extensibility, you can implement:
 * IEmitDiagnostics - to add additional diagnostic outputs
 
 If you don't call configure, you'll default to `HttpProfilerPerRequestStorage` and `DiagnosticsTraceListener`.
+
+
+Once you call `MicroProfiler.Current.Stop();` by default, the `DiagnosticsTraceListener` will produce output via Trace.WriteLine that looks like this:
+
+	[Profiler] Session fab3bdf2-7834-4893-b513-8a0d814705da
+	[Profiler] Clock          Time (inc. children)     Label
+	[Profiler] +1ms           21.1355ms                My outer loop
+	[Profiler] +7ms           10.7195ms                My inner loop
+	[Profiler] +18ms          4.7646ms                 some other thing
+	[Profiler] Total time: 23ms
 
 
 ## Why Do I Need It?
