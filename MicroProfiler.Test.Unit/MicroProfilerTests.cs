@@ -23,14 +23,14 @@ namespace MicroProfiler.Test.Unit
         {
             var diagnosticsEmitter = new FakeDiagnosticsEmitter();
             MicroProfiler.Configure(new FakeStorage(), diagnosticsEmitter); 
-            
+
             var currentMp = MicroProfiler.Current;
 
             Assert.That(currentMp.DiagnosticOutput.ToList()[0], Is.EqualTo(diagnosticsEmitter));
         }
 
         [Test]
-        public void Current_NoActiveSession_StartsAndStoresNewProfilingSession()
+        public void Current_NoActiveSession_ReturnsAProfilerThatIsntRecording()
         {
             var storage = new FakeStorage();
             MicroProfiler.Configure(storage); 
@@ -38,7 +38,7 @@ namespace MicroProfiler.Test.Unit
             var currentMp = MicroProfiler.Current;
 
             Assert.That(currentMp, Is.Not.Null);
-            Assert.That(storage.StoreCalled, Is.True);
+            Assert.That(storage.StoreCalled, Is.False);
         }
 
         [Test]
