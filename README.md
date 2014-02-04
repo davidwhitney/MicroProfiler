@@ -11,40 +11,39 @@ MicroProfiler
 Framework agnostic clone of ASP.NET MVC MiniProfiler. If you like explicit profiling steps that you can run in production, but you're not using ASP.NET MVC, your options are limited. MicroProfiler gives you similar syntax in the form:
 
 	[TestFixture]
-    	public class FullDemo
-    	{
-        	[Test]
-	        public void RunExampleCode()
-        	{
-	            // On application start
-	            MicroProfiler.Configure(new FakeStorage(), new DiagnosticsTraceListener());
-	            // end
+	public class FullDemo
+	{
+		[Test]
+		public void RunExampleCode()
+		{
+			// On application start
+			MicroProfiler.Configure(new FakeStorage(), new DiagnosticsTraceListener());
+			// end
 	
+			// On request start
+			MicroProfiler.Current.Start();
+			// end
 
-		    // On request start
-	            MicroProfiler.Current.Start();
-	 	    // end
-
-
-	            using (MicroProfiler.Current.Step("My outer loop"))
-        	    {
-                	Thread.Sleep(5);
-
-	                using (MicroProfiler.Current.Step("My inner loop"))
-        	        {
-	                    Thread.Sleep(10);
-	                }
-
-	                using (MicroProfiler.Current.Step("some other thing"))
-	                {
-	                    Thread.Sleep(5);
-	                }
-	            }
-		
-		    // On request end	
-	            MicroProfiler.Current.Stop();
-	        }
-	    }
+			
+			using (MicroProfiler.Current.Step("My outer loop"))
+			{
+				Thread.Sleep(5);
+			
+				using (MicroProfiler.Current.Step("My inner loop"))
+				{
+				    	Thread.Sleep(10);
+				}
+			
+				using (MicroProfiler.Current.Step("some other thing"))
+				{
+			    		Thread.Sleep(5);
+				}
+			}
+			
+			// On request end	
+			MicroProfiler.Current.Stop();
+		}
+	}
 
 
 If the profiler isn't started, nothing happens, and once you stop the profiling session, all wired up instances of `IEmitdiagnostics` are executed.
