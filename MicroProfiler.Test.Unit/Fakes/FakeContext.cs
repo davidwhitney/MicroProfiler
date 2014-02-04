@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Web;
 
-namespace MicroProfiler.Test.Unit.ProfilingDataStorage
+namespace MicroProfiler.Test.Unit.Fakes
 {
     public class FakeContext : HttpContextBase
     {

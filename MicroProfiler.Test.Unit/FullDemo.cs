@@ -9,7 +9,6 @@ namespace MicroProfiler.Test.Unit
     public class FullDemo
     {
         [Test]
-        [Ignore]
         public void RunExampleCode()
         {
             // Bootstrapping code
@@ -21,16 +20,16 @@ namespace MicroProfiler.Test.Unit
 
             using (MicroProfiler.Current.Step("My outer loop"))
             {
-                Thread.Sleep(25);
+                Thread.Sleep(5);
 
                 using (MicroProfiler.Current.Step("My inner loop"))
                 {
-                    Thread.Sleep(30);
+                    Thread.Sleep(10);
                 }
 
                 using (MicroProfiler.Current.Step("some other thing"))
                 {
-                    Thread.Sleep(30);
+                    Thread.Sleep(5);
                 }
             }
 

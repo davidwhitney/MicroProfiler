@@ -37,6 +37,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,6 +50,8 @@
     <Compile Include="FullDemo.cs" />
     <Compile Include="MicroProfilerControllerTests.cs" />
     <Compile Include="MicroProfilerTests.cs" />
+    <Compile Include="Fakes\FakeContext.cs" />
+    <Compile Include="ProfilingDataStorage\HttpProfilerPerRequestStorageTests.cs" />
     <Compile Include="Profiling\MicroProfilerProfiledStepTests.cs" />
     <Compile Include="Profiling\NullProfiledStepTests.cs" />
     <Compile Include="Profiling\ProfiledOperationsTests.cs" />
