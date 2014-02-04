@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$id$</title>
+    <authors>David Whitney</authors>
+    <owners>$author$</owners>
+    <projectUrl>https://github.com/davidwhitney/MicroProfiler</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+	<summary>Framework agnostic clone of ASP.NET MVC MiniProfiler, decoupled from MVC. Explicit / invasive profiling that you can run in production, with extensible result rendering.</summary>
+    <description>$description$</description>
+    <copyright>Copyright 2014</copyright>
+    <tags>MicroProfiler MiniProfiler production profiling timers performance diagnostics</tags>
+	<licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+  </metadata>
+	<files>	  
+	  <file src="bin\Release\*.pdb" target="lib\net40" /> 
+	</files> 
+</package>
