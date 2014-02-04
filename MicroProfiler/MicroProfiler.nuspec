@@ -13,6 +13,9 @@
     <copyright>Copyright 2014</copyright>
     <tags>MicroProfiler MiniProfiler production profiling timers performance diagnostics</tags>
 	<licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+	<frameworkAssemblies>
+		<frameworkAssembly assemblyName="System.Web" targetFramework="net40" />
+    </frameworkAssemblies>
   </metadata>
 	<files>	  
 	  <file src="bin\Release\*.pdb" target="lib\net40" /> 
