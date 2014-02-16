@@ -1,6 +1,8 @@
 MicroProfiler
 =============
 
+[![Build status](https://ci.appveyor.com/api/projects/status?id=2fnmtwk3g75wc9dw)](https://ci.appveyor.com/project/microprofiler)
+
 Framework agnostic clone of ASP.NET MVC MiniProfiler. If you like explicit profiling steps that you can run in production, but you're not using ASP.NET MVC, your options are limited. MicroProfiler gives you similar syntax in the form:
 
 	[TestFixture]
